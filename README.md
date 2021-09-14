@@ -9,6 +9,8 @@
 
 ## Prerequisites
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/71a3b93e0ad8428da03507a3b78e1fd8)](https://app.codacy.com/gh/olivic9/verifyMyTest?utm_source=github.com&utm_medium=referral&utm_content=olivic9/verifyMyTest&utm_campaign=Badge_Grade_Settings)
+
 <li><a href="https://golang.org/doc/install">Go</a></li>
 <li><a href="https://www.docker.com/get-started">Docker</a></li>
 <li><a href="https://docs.docker.com/compose/">Docker Compose</a></li>
