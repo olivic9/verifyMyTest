@@ -1,34 +1,35 @@
 {
+  "swagger": "2.0",
+  "info": {
+    "description": "VerifyMyTest Test API",
+    "version": "0.0.1",
+    "title": "VerifyMyTest API"
+  },
+  "host": "localhost:8989",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
   "consumes": [
     "application/json"
   ],
   "produces": [
     "application/json"
   ],
-  "schemes": [
-    "http"
-  ],
-  "info": {
-    "description": "VerifyMyTest Test API",
-    "title": "VerifyMyTest API",
-    "version": "0.0.1"
-  },
-  "host": "localhost:8989",
-  "basePath": "/",
-  "swagger": "2.0",
   "paths": {
     "/customer": {
       "post": {
-        "description": "Create new customer",
         "tags": [
           "customer"
         ],
         "summary": "New customer",
+        "description": "Create new customer",
         "operationId": "CreateCustomer",
         "parameters": [
           {
-            "name": "Body",
             "in": "body",
+            "name": "Body",
+            "required": false,
             "schema": {
               "$ref": "#/definitions/Customer"
             }
@@ -36,82 +37,108 @@
         ],
         "responses": {
           "201": {
-            "$ref": "#/responses/CustomerResponse"
+            "description": "CustomerResponse Customer Success Response",
+            "schema": {
+              "$ref": "#/definitions/inline_response_201"
+            }
           },
           "400": {
-            "$ref": "#/responses/CustomerErrorResponse"
+            "description": "CustomerErrorResponse Customer Error Response",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
           }
         }
       }
     },
-    "/customer/:field": {
+    "/customer/{Field}/{Arg}": {
       "get": {
-        "description": "Get customer data by field",
         "tags": [
           "customer"
         ],
         "summary": "Customer",
+        "description": "Get customer data by field",
         "operationId": "FindParameters",
         "parameters": [
           {
-            "type": "string",
-            "description": "Search criteria field",
             "name": "Field",
-            "in": "query"
+            "in": "path",
+            "description": "Search criteria field",
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "string",
-            "description": "Search criteria argument",
             "name": "Arg",
-            "in": "query"
+            "in": "path",
+            "description": "Search criteria argument",
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "string",
-            "description": "Pagination page",
             "name": "Page",
-            "in": "query"
+            "in": "query",
+            "description": "Pagination page",
+            "required": false,
+            "type": "string"
           },
           {
-            "type": "string",
-            "description": "Results per page",
             "name": "PerPage",
-            "in": "query"
+            "in": "query",
+            "description": "Results per page",
+            "required": false,
+            "type": "string"
           },
           {
-            "type": "string",
-            "description": "Sort field",
             "name": "SortField",
-            "in": "query"
+            "in": "query",
+            "description": "Sort field",
+            "required": false,
+            "type": "string"
           },
           {
-            "type": "string",
-            "description": "Sort direction",
             "name": "SortDirection",
-            "in": "query"
+            "in": "query",
+            "description": "Sort direction",
+            "required": false,
+            "type": "string"
           }
         ],
         "responses": {
           "200": {
-            "$ref": "#/responses/CustomersResponse"
+            "description": "CustomersResponse Customers Success Response",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200"
+            }
           },
           "400": {
-            "$ref": "#/responses/CustomerErrorResponse"
+            "description": "CustomerErrorResponse Customer Error Response",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
           }
         }
       }
     },
-    "/customer/:id": {
+    "/customer/{id}": {
       "put": {
-        "description": "Update existing customer",
         "tags": [
           "customer"
         ],
         "summary": "Update customer",
+        "description": "Update existing customer",
         "operationId": "UpdateCustomer",
         "parameters": [
           {
-            "name": "Body",
+            "name": "id",
+            "in": "path",
+            "description": "Customer Id",
+            "required": true,
+            "type": "string"
+          },
+          {
             "in": "body",
+            "name": "Body",
+            "required": false,
             "schema": {
               "$ref": "#/definitions/Customer"
             }
@@ -119,20 +146,35 @@
         ],
         "responses": {
           "200": {
-            "$ref": "#/responses/CustomerResponse"
+            "description": "CustomerResponse Customer Success Response",
+            "schema": {
+              "$ref": "#/definitions/inline_response_201"
+            }
           },
           "400": {
-            "$ref": "#/responses/CustomerErrorResponse"
+            "description": "CustomerErrorResponse Customer Error Response",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
           }
         }
       },
       "delete": {
-        "description": "Delete existing customer",
         "tags": [
           "customer"
         ],
         "summary": "Delete customer",
+        "description": "Delete existing customer",
         "operationId": "DeleteCustomer",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Customer Id",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": ""
@@ -142,53 +184,61 @@
     },
     "/customers": {
       "get": {
-        "description": "Get customers list data",
         "tags": [
           "customer"
         ],
         "summary": "Customers paginated list",
+        "description": "Get customers list data",
         "operationId": "PaginateParameters",
         "parameters": [
           {
-            "type": "string",
-            "description": "Pagination page",
             "name": "Page",
-            "in": "query"
+            "in": "query",
+            "description": "Pagination page",
+            "required": false,
+            "type": "string"
           },
           {
-            "type": "string",
-            "description": "Results per page",
             "name": "PerPage",
-            "in": "query"
+            "in": "query",
+            "description": "Results per page",
+            "required": false,
+            "type": "string"
           },
           {
-            "type": "string",
-            "description": "Sort field",
             "name": "SortField",
-            "in": "query"
+            "in": "query",
+            "description": "Sort field",
+            "required": false,
+            "type": "string"
           },
           {
-            "type": "string",
-            "description": "Sort direction",
             "name": "SortDirection",
-            "in": "query"
+            "in": "query",
+            "description": "Sort direction",
+            "required": false,
+            "type": "string"
           }
         ],
         "responses": {
           "200": {
-            "$ref": "#/responses/CustomersResponse"
+            "description": "CustomersResponse Customers Success Response",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200"
+            }
           }
         }
       }
     },
     "/ping": {
       "get": {
-        "description": "Get Ping and reply Pong",
         "tags": [
           "common"
         ],
         "summary": "Ping",
+        "description": "Get Ping and reply Pong",
         "operationId": "getPing",
+        "parameters": [],
         "responses": {
           "200": {
             "description": ""
@@ -267,6 +317,7 @@
         },
         "records": {
           "type": "object",
+          "properties": {},
           "x-go-name": "Records"
         },
         "total_pages": {
@@ -281,58 +332,68 @@
         }
       },
       "x-go-package": "verifyMyTest/m/util"
+    },
+    "inline_response_201": {
+      "type": "object",
+      "properties": {
+        "Data": {
+          "$ref": "#/definitions/CustomerResponse"
+        },
+        "Message": {
+          "type": "string"
+        },
+        "Success": {
+          "type": "boolean"
+        }
+      }
+    },
+    "inline_response_400": {
+      "type": "object",
+      "properties": {
+        "Data": {
+          "type": "object",
+          "properties": {}
+        },
+        "Message": {
+          "type": "string"
+        },
+        "Success": {
+          "type": "boolean"
+        }
+      }
+    },
+    "inline_response_200": {
+      "type": "object",
+      "properties": {
+        "Data": {
+          "$ref": "#/definitions/Data"
+        },
+        "Message": {
+          "type": "string"
+        },
+        "Success": {
+          "type": "boolean"
+        }
+      }
     }
   },
   "responses": {
     "CustomerErrorResponse": {
       "description": "CustomerErrorResponse Customer Error Response",
       "schema": {
-        "type": "object",
-        "properties": {
-          "Data": {
-            "type": "object"
-          },
-          "Message": {
-            "type": "string"
-          },
-          "Success": {
-            "type": "boolean"
-          }
-        }
+        "$ref": "#/definitions/inline_response_400"
       }
     },
     "CustomerResponse": {
       "description": "CustomerResponse Customer Success Response",
       "schema": {
-        "type": "object",
-        "properties": {
-          "Data": {
-            "$ref": "#/definitions/CustomerResponse"
-          },
-          "Message": {
-            "type": "string"
-          },
-          "Success": {
-            "type": "boolean"
-          }
-        }
+        "$ref": "#/definitions/inline_response_201"
       }
     },
     "CustomersResponse": {
       "description": "CustomersResponse Customers Success Response",
       "schema": {
-        "type": "object",
-        "properties": {
-          "Data": {
-            "$ref": "#/definitions/Data"
-          },
-          "Message": {
-            "type": "string"
-          },
-          "Success": {
-            "type": "boolean"
-          }
-        }
+        "$ref": "#/definitions/inline_response_200"
       }
     }
   }

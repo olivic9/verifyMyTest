@@ -8,6 +8,7 @@
 
 ## Prerequisites
 
+<li><a href="https://golang.org/doc/install">Go</a></li>
 <li><a href="https://www.docker.com/get-started">Docker</a></li>
 <li><a href="https://docs.docker.com/compose/">Docker Compose</a></li>
 
@@ -17,6 +18,7 @@ Clone this repo and shell to its path and run docker compose. Make sure 3306 and
 ```sh
 git clone https://github.com/olivic9/verifyMyTest.git
 cd verifyMyTest
+mkdir "logs"
 docker-compose up -d
 ```
 Build
@@ -26,9 +28,6 @@ go build -o verify-my-test
 
 Setup 
 ```sh
-
-
-
 ./verify-my-test migrate
 
 Or
