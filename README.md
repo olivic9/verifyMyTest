@@ -4,6 +4,7 @@
 
 </p>
 
+
 > VerifyMyAge Code Challenge
 
 ## Prerequisites
@@ -59,5 +60,5 @@ make test
 
 👤 **Clayson Oliveira**
 
-* Linkedin: [Clayson Oliveira](https://www.linkedin.com/in/clayson-oliveira-603a853b/)
-* Github: [@olivic9](https://github.com/olivic9)
+  * Linkedin: [Clayson Oliveira](https://www.linkedin.com/in/clayson-oliveira-603a853b/)
+  * Github: [@olivic9](https://github.com/olivic9)
