@@ -1,0 +1,339 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http"
+  ],
+  "info": {
+    "description": "VerifyMyTest Test API",
+    "title": "VerifyMyTest API",
+    "version": "0.0.1"
+  },
+  "host": "localhost:8989",
+  "basePath": "/",
+  "swagger": "2.0",
+  "paths": {
+    "/customer": {
+      "post": {
+        "description": "Create new customer",
+        "tags": [
+          "customer"
+        ],
+        "summary": "New customer",
+        "operationId": "CreateCustomer",
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Customer"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "$ref": "#/responses/CustomerResponse"
+          },
+          "400": {
+            "$ref": "#/responses/CustomerErrorResponse"
+          }
+        }
+      }
+    },
+    "/customer/:field": {
+      "get": {
+        "description": "Get customer data by field",
+        "tags": [
+          "customer"
+        ],
+        "summary": "Customer",
+        "operationId": "FindParameters",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Search criteria field",
+            "name": "Field",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Search criteria argument",
+            "name": "Arg",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Pagination page",
+            "name": "Page",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Results per page",
+            "name": "PerPage",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Sort field",
+            "name": "SortField",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Sort direction",
+            "name": "SortDirection",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/CustomersResponse"
+          },
+          "400": {
+            "$ref": "#/responses/CustomerErrorResponse"
+          }
+        }
+      }
+    },
+    "/customer/:id": {
+      "put": {
+        "description": "Update existing customer",
+        "tags": [
+          "customer"
+        ],
+        "summary": "Update customer",
+        "operationId": "UpdateCustomer",
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Customer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/CustomerResponse"
+          },
+          "400": {
+            "$ref": "#/responses/CustomerErrorResponse"
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete existing customer",
+        "tags": [
+          "customer"
+        ],
+        "summary": "Delete customer",
+        "operationId": "DeleteCustomer",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/customers": {
+      "get": {
+        "description": "Get customers list data",
+        "tags": [
+          "customer"
+        ],
+        "summary": "Customers paginated list",
+        "operationId": "PaginateParameters",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Pagination page",
+            "name": "Page",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Results per page",
+            "name": "PerPage",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Sort field",
+            "name": "SortField",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Sort direction",
+            "name": "SortDirection",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/CustomersResponse"
+          }
+        }
+      }
+    },
+    "/ping": {
+      "get": {
+        "description": "Get Ping and reply Pong",
+        "tags": [
+          "common"
+        ],
+        "summary": "Ping",
+        "operationId": "getPing",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Customer": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string",
+          "x-go-name": "Address"
+        },
+        "age": {
+          "type": "integer",
+          "format": "uint64",
+          "x-go-name": "Age"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "x-go-name": "CreatedAt"
+        },
+        "email": {
+          "type": "string",
+          "x-go-name": "Email"
+        },
+        "name": {
+          "type": "string",
+          "x-go-name": "Name"
+        },
+        "password": {
+          "type": "string",
+          "x-go-name": "Password"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "x-go-name": "UpdatedAt"
+        }
+      },
+      "x-go-package": "verifyMyTest/m/app/models"
+    },
+    "CustomerResponse": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string",
+          "x-go-name": "Address"
+        },
+        "age": {
+          "type": "integer",
+          "format": "uint64",
+          "x-go-name": "Age"
+        },
+        "email": {
+          "type": "string",
+          "x-go-name": "Email"
+        },
+        "name": {
+          "type": "string",
+          "x-go-name": "Name"
+        }
+      },
+      "x-go-package": "verifyMyTest/m/app/models"
+    },
+    "Data": {
+      "type": "object",
+      "properties": {
+        "current_page": {
+          "type": "string",
+          "x-go-name": "CurrentPage"
+        },
+        "records": {
+          "type": "object",
+          "x-go-name": "Records"
+        },
+        "total_pages": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "TotalPages"
+        },
+        "total_records": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "TotalRecords"
+        }
+      },
+      "x-go-package": "verifyMyTest/m/util"
+    }
+  },
+  "responses": {
+    "CustomerErrorResponse": {
+      "description": "CustomerErrorResponse Customer Error Response",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "Data": {
+            "type": "object"
+          },
+          "Message": {
+            "type": "string"
+          },
+          "Success": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "CustomerResponse": {
+      "description": "CustomerResponse Customer Success Response",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "Data": {
+            "$ref": "#/definitions/CustomerResponse"
+          },
+          "Message": {
+            "type": "string"
+          },
+          "Success": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "CustomersResponse": {
+      "description": "CustomersResponse Customers Success Response",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "Data": {
+            "$ref": "#/definitions/Data"
+          },
+          "Message": {
+            "type": "string"
+          },
+          "Success": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  }
+}

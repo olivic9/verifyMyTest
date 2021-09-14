@@ -1,0 +1,31 @@
+version: "3.8"
+services:
+
+  mysql:
+    image: mysql:5.7
+    container_name: vt_mysql
+    ports:
+      - 3306:3306
+    expose:
+      - 3306
+    volumes:
+      - ./docker/mysql/data:/var/lib/mysql
+      - ./docker/mysql/conf.d:/etc/mysql/conf.d
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: verify-my-test
+    restart: always
+
+  go:
+    container_name: vt
+    build:
+      context: .
+    ports:
+      - 8989:8989
+    expose:
+      - 8989
+    links:
+      - mysql
+    restart: unless-stopped
+    depends_on:
+      - mysql

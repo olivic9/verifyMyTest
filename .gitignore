@@ -1,0 +1,4 @@
+/.env
+/docker/mysql/data/
+/logs/application.log
+/coverage.out
